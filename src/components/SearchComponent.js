@@ -1,7 +1,7 @@
 import BookComponent from './BookComponent'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-const SearchComponent = ({ books }) => {
+const SearchComponent = ({ books, updateBooks }) => {
   const updateSearch = (search) => {
     setSearch(search.trim())
   }
@@ -35,7 +35,7 @@ const SearchComponent = ({ books }) => {
           {showingBooks.map((book) => {
             return (
               <li key={book.id}>
-                <BookComponent book={book} />
+                <BookComponent book={book} updateBooks={updateBooks} />
               </li>
             )
           })}

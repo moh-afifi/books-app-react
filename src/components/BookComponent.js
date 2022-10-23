@@ -1,19 +1,21 @@
 import * as ContactsApi from '../utils/BooksAPI'
-import { useState } from 'react'
-const BookComponent = ({ book }) => {
-  const onSelect = async (book, shelf) => {
-    const res = await ContactsApi.update(book, shelf)
-    console.log(res)
+const BookComponent = ({ book, updateBooks }) => {
+  const onSelect = async (shelf) => {
+    updateBooks(book.id, shelf)
+    await ContactsApi.update(book, shelf)
   }
-
-  const [value, setValue] = useState('')
 
   const onChange = (e) => {
-    setValue(e.target.value)
-    console.log(e.target.value)
-    onSelect(book, value)
+    onSelect(e.target.value)
   }
 
+  const currentlyReading =
+    book.shelf === 'currentlyReading'
+      ? '✓ Currently Reading'
+      : 'Currently Reading'
+  const wantToRead =
+    book.shelf === 'wantToRead' ? '✓ Want To Read' : 'Want To Read'
+  const read = book.shelf === 'read' ? '✓ Read' : 'Read'
   return (
     <div className="book">
       <div className="book-top">
@@ -27,12 +29,10 @@ const BookComponent = ({ book }) => {
         ></div>
         <div className="book-shelf-changer">
           <select onChange={onChange}>
-            <option value="none" disabled>
-              Move to...
-            </option>
-            <option value="currentlyReading">Currently Reading</option>
-            <option value="wantToRead">Want to Read</option>
-            <option value="read">Read</option>
+            <option value="Move to...">Move to...</option>
+            <option value="currentlyReading">{currentlyReading}</option>
+            <option value="wantToRead">{wantToRead}</option>
+            <option value="read">{read}</option>
             <option value="none">None</option>
           </select>
         </div>
