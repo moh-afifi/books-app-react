@@ -8,7 +8,7 @@ const SearchComponent = ({ books, searchBooks, updateBooks }) => {
     setSearch(search)
     setTimeout(function () {
       searchBooks(search)
-    }, 1000)
+    }, 500)
   }
 
   return (
