@@ -1,19 +1,13 @@
 import BookComponent from './BookComponent'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-const SearchComponent = ({ books, updateBooks }) => {
-  const updateSearch = (search) => {
-    setSearch(search.trim())
-  }
-
+const SearchComponent = ({ books, searchBooks, updateBooks }) => {
   const [search, setSearch] = useState('')
 
-  const showingBooks =
-    search === ''
-      ? books
-      : books.filter((b) =>
-          b.title.toLowerCase().trim().includes(search.trim()),
-        )
+  const updateSearch = (search) => {
+    setSearch(search.trim())
+    searchBooks(search.trim())
+  }
 
   return (
     <div className="search-books">
@@ -32,13 +26,14 @@ const SearchComponent = ({ books, updateBooks }) => {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {showingBooks.map((book) => {
-            return (
-              <li key={book.id}>
-                <BookComponent book={book} updateBooks={updateBooks} />
-              </li>
-            )
-          })}
+          {books.length !== 0 &&
+            books.map((book) => {
+              return (
+                <li key={book.id}>
+                  <BookComponent book={book} updateBooks={updateBooks} />
+                </li>
+              )
+            })}
         </ol>
       </div>
     </div>

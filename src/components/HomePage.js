@@ -1,6 +1,6 @@
 import CategoryComponent from './CategoryComponent'
 import { Link } from 'react-router-dom'
-const HomePage = ({ books, updateBooks }) => {
+const HomePage = ({ books, updateBooks, searchBooks }) => {
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -29,7 +29,9 @@ const HomePage = ({ books, updateBooks }) => {
         </div>
       </div>
       <div className="open-search">
-        <Link to="/search">Add a book</Link>
+        <Link to="/search" onClick={() => searchBooks('')}>
+          Add a book
+        </Link>
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import * as ContactsApi from '../utils/BooksAPI'
 const BookComponent = ({ book, updateBooks }) => {
   const onSelect = async (shelf) => {
-    updateBooks(book.id, shelf)
+    updateBooks(book.id, shelf, book)
     await ContactsApi.update(book, shelf)
   }
 
@@ -38,7 +38,7 @@ const BookComponent = ({ book, updateBooks }) => {
         </div>
       </div>
       <div className="book-title">{book.title}</div>
-      <div className="book-authors">{book.authors[0]}</div>
+      <div className="book-authors">{book.publisher}</div>
     </div>
   )
 }
