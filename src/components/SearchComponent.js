@@ -5,8 +5,10 @@ const SearchComponent = ({ books, searchBooks, updateBooks }) => {
   const [search, setSearch] = useState('')
 
   const updateSearch = (search) => {
-    setSearch(search.trim())
-    searchBooks(search.trim())
+    setSearch(search)
+    setTimeout(function () {
+      searchBooks(search)
+    }, 1000)
   }
 
   return (
