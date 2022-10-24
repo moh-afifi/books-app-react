@@ -42,8 +42,6 @@ function App() {
       let res
       try {
         res = await BooksApi.search(`${query}`, 20)
-        console.log(query)
-        console.log(res)
         res.forEach((book) => {
           books.forEach((x) => {
             if (x.id === book.id) {
